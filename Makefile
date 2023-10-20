@@ -10,7 +10,7 @@ INCLUDES = -I include/ -I $(LIB_DIR)
 
 # Source and Object files
 
-SRC_FILES = main.c push_swap.c operations.c utilities.c small_sort.c
+SRC_FILES = main.c push_swap.c operations.c utilities.c small_sort.c parse.c
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 SRC = $(addprefix $(SRC_DIR), $(SRC_FILES))
