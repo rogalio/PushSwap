@@ -18,6 +18,7 @@ int peek(t_stack *stack);
 void display_stack(t_stack *stack);
 bool rotate_up(t_stack **stack);
 bool rotate_down(t_stack **stack);
+bool is_sorted(t_stack *stack);
 
 // utilities.c
 t_stack *init_stack();
@@ -44,3 +45,11 @@ void rra(t_stack **stack_a);
 void rrb(t_stack **stack_b);
 void rrr(t_stack **stack_a, t_stack **stack_b);
 void sort_small(t_stack **stack_a, t_stack **stack_b);
+
+int find_median_of_three(t_stack **stack_a);
+void move_median_to_top(t_stack **stack_a);
+void sort_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
+int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
+bool is_sorted(t_stack *stack);
+void recursive_sort_a(t_stack **stack_a, t_stack **stack_b);
+void recursive_sort_b(t_stack **stack_a, t_stack **stack_b);

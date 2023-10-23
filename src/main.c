@@ -10,13 +10,21 @@ int main(int ac, char **av)
     stack_b = init_stack();
 
     parse_input_arguments(ac, av, &stack_a);
-    sort_small(&stack_a, &stack_b);
+
+    //printf("is_sorted(stack_a) = %d\n", is_sorted(stack_a));
+   // printf(" find_median_of_three(stack_a) = %d\n", find_median_of_three(&stack_a));
+    //move_median_to_top(&stack_a);
+    //partition_around_pivot(&stack_a, &stack_b, find_median_of_three(&stack_a));
+    
+    //sort_small(&stack_a, &stack_b);
     /*
         printf("\n");
     display_stack(stack_b);
     printf("\n");
     */
    display_stack(stack_a);
+   printf("\n");
+   display_stack(stack_b);
 
    
     return 0;

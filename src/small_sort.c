@@ -71,6 +71,8 @@ void rrr(t_stack **stack_a, t_stack **stack_b)
     printf("rrr\n");
 }
 
+
+
 int stack_size(t_stack *stack)
 {
     int size;
@@ -133,6 +135,56 @@ int find_min(t_stack *stack)
     }
     return (min);
 }
+
+int get_element_at(t_stack *stack, int index)
+{
+    int i;
+
+    i = 0;
+    while (i < index)
+    {
+        stack = stack->next;
+        i++;
+    }
+    return (stack->value);
+}
+
+int position_of(int value, t_stack **stack_a)
+{
+    int i;
+    int size;
+
+    i = 0;
+    size = stack_size(*stack_a);
+    while (i < size)
+    {
+        if (peek(*stack_a) == value)
+            return (i);
+        ra(stack_a);
+        i++;
+    }
+    return (0);
+}
+
+int   find_median_of_three(t_stack **stack_a)
+{
+    int first;
+    int middle;
+    int last;
+
+    first = peek(*stack_a);
+    middle = get_element_at(*stack_a, stack_size(*stack_a) / 2);
+    last = get_element_at(*stack_a, stack_size(*stack_a) - 1);
+
+    if ((first > middle && first < last) || (first < middle && first > last))
+        return (first);
+    else if ((middle > first && middle < last) || (middle < first && middle > last))
+        return (middle);
+    else if ((last > first && last < middle) || (last < first && last > middle))
+        return (last);
+    return (0);
+}
+
 void sort_four(t_stack **stack_a, t_stack **stack_b)
 {   
     int min;
@@ -172,6 +224,103 @@ void sort_pivot(t_stack **stack_a, t_stack **stack_b, int pivot)
         i++;
     }
 }
+
+void move_median_to_top(t_stack **stack_a) 
+{
+    int median = find_median_of_three(stack_a);
+    printf("median = %d\n", median);
+    int position = position_of(median, stack_a);
+    int size = stack_size(*stack_a);
+    int i = 0;
+
+    while (i < size)
+    {
+        if (peek(*stack_a) == median)
+            break;
+        else if (position < size / 2)
+            ra(stack_a);
+        else
+            rra(stack_a);
+        i++;
+    }
+}
+
+
+
+
+int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot)
+{
+    int size;
+    int i;
+
+    size = stack_size(*stack_a);
+    i = 0;
+    while (i < size)
+    {
+        if (peek(*stack_a) < pivot)
+            pb(stack_a, stack_b);
+        else
+            ra(stack_a);
+        i++;
+    }
+    return (size - stack_size(*stack_a));
+}
+void recursive_sort_b(t_stack **stack_a, t_stack **stack_b)
+{
+    if (is_sorted(*stack_b) || stack_size(*stack_b) <= 2) 
+    {
+        while (stack_size(*stack_b) > 0)
+            pa(stack_a, stack_b);
+        return ;
+    }
+
+    int pivot = find_median_of_three(stack_b);
+    int size = partition_around_pivot(stack_b, stack_a, pivot);
+    int i = 0;
+
+    while (i < size)
+    {
+        if (peek(*stack_b) < pivot)
+            pa(stack_a, stack_b);
+        else
+            rb(stack_b);
+        i++;
+    }
+    recursive_sort_a(stack_a, stack_b);
+    recursive_sort_b(stack_a, stack_b);
+    while (stack_size(*stack_b) > 0)
+        pa(stack_a, stack_b);
+
+}
+
+void recursive_sort_a(t_stack **stack_a, t_stack **stack_b)
+{
+    if (is_sorted(*stack_a) || stack_size(*stack_a) <= 2) 
+    {
+        while (stack_size(*stack_b) > 0)
+            pa(stack_a, stack_b);
+        return ;
+    }
+
+    int pivot = find_median_of_three(stack_a);
+    int size = partition_around_pivot(stack_a, stack_b, pivot);
+    int i = 0;
+
+    while (i < size)
+    {
+        if (peek(*stack_a) < pivot)
+            pb(stack_a, stack_b);
+        else
+            ra(stack_a);
+        i++;
+    }
+    recursive_sort_a(stack_a, stack_b);
+    recursive_sort_b(stack_a, stack_b);
+    while (stack_size(*stack_b) > 0)
+        pa(stack_a, stack_b);
+
+}
+
 
 
 void sort_small(t_stack **stack_a, t_stack **stack_b)
