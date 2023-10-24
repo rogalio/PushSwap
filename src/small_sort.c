@@ -265,62 +265,46 @@ int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot)
     }
     return (size - stack_size(*stack_a));
 }
-void recursive_sort_b(t_stack **stack_a, t_stack **stack_b)
+
+void merge_partitions(t_stack **stack_a, t_stack **stack_b)
 {
-    if (is_sorted(*stack_b) || stack_size(*stack_b) <= 2) 
+    while (*stack_b)
     {
-        while (stack_size(*stack_b) > 0)
-            pa(stack_a, stack_b);
-        return ;
-    }
-
-    int pivot = find_median_of_three(stack_b);
-    int size = partition_around_pivot(stack_b, stack_a, pivot);
-    int i = 0;
-
-    while (i < size)
-    {
-        if (peek(*stack_b) < pivot)
-            pa(stack_a, stack_b);
-        else
-            rb(stack_b);
-        i++;
-    }
-    recursive_sort_a(stack_a, stack_b);
-    recursive_sort_b(stack_a, stack_b);
-    while (stack_size(*stack_b) > 0)
+        rrb(stack_b);
         pa(stack_a, stack_b);
-
+    }
 }
 
-void recursive_sort_a(t_stack **stack_a, t_stack **stack_b)
+    
+
+void partition_sort(t_stack **stack_a, t_stack **stack_b)
 {
-    if (is_sorted(*stack_a) || stack_size(*stack_a) <= 2) 
+
+    int size = stack_size(*stack_a);
+    int median = find_median_of_three(stack_a);
+
+    //(void)stack_b;
+    if (size <= 5)
     {
-        while (stack_size(*stack_b) > 0)
-            pa(stack_a, stack_b);
+        sort_small(stack_a, stack_b);
         return ;
     }
+  
+    // Choisir un pivot et le placer en haut de la pile B
+    move_median_to_top(stack_a);
+    partition_around_pivot(stack_a, stack_b, median);
 
-    int pivot = find_median_of_three(stack_a);
-    int size = partition_around_pivot(stack_a, stack_b, pivot);
-    int i = 0;
-
-    while (i < size)
+    // Trier les éléments plus petits et plus grands que le pivot de fqcon iterative
+    int newSize = stack_size(*stack_a);
+    if (newSize < size)
     {
-        if (peek(*stack_a) < pivot)
-            pb(stack_a, stack_b);
-        else
-            ra(stack_a);
-        i++;
+        partition_sort(stack_a, stack_b);
+        partition_sort(stack_b, stack_a);
     }
-    recursive_sort_a(stack_a, stack_b);
-    recursive_sort_b(stack_a, stack_b);
-    while (stack_size(*stack_b) > 0)
-        pa(stack_a, stack_b);
-
+    // Fusionner les partitions triées
+   // merge_partitions(stack_a, stack_b);
+    
 }
-
 
 
 void sort_small(t_stack **stack_a, t_stack **stack_b)
@@ -338,6 +322,11 @@ void sort_small(t_stack **stack_a, t_stack **stack_b)
         sort_four(stack_a, stack_b);
     else if (size == 5)
         sort_five(stack_a, stack_b);
+    else if (size >= 6)
+    {
+        partition_sort(stack_a, stack_b);
+        merge_partitions(stack_a, stack_b);
+    }
 
         
 }
