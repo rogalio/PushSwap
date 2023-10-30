@@ -25,6 +25,7 @@ t_stack *init_stack();
 void free_split(char **tab);
 void handle_error(char **tab, const char *message);
 bool is_valid_number(char *str);
+int sort_array(int *array, int size);
 
 // parse.c
 void parse_input_arguments(int ac, char **av, t_stack **stack_a);
@@ -61,3 +62,4 @@ void merge_partitions(t_stack **stack_a, t_stack **stack_b);
 int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
 void quicksort_stack(t_stack **stack_a, t_stack **stack_b, int size);
 void sort_small(t_stack **stack_a, t_stack **stack_b);
+void sort_big(t_stack **stack_a, t_stack **stack_b);

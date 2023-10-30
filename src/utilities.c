@@ -35,6 +35,31 @@ void free_split(char **tab)
     free(temp);  
 }
 
+int sort_array(int *array, int size)
+{
+    int i;
+    int j;
+    int tmp;
+
+    i = 0;
+    while (i < size - 1)
+    {
+        j = i + 1;
+        while (j < size)
+        {
+            if (array[i] > array[j])
+            {
+                tmp = array[i];
+                array[i] = array[j];
+                array[j] = tmp;
+            }
+            j++;
+        }
+        i++;
+    }
+    return (1);
+}
+
 void handle_error(char **tab, const char *message) 
 {
     free_split(tab);

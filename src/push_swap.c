@@ -1,5 +1,34 @@
 #include "../include/push_swap.h"
 
+
+
+int find_optimized_median(t_stack **stack_a) 
+{
+    int size;
+    int i;
+    int median;
+    int *array;
+
+    size = stack_size(*stack_a);
+    array = malloc(sizeof(int) * size);
+    if (!array)
+        handle_error(0, "malloc failed");
+    i = 0;
+    while (i < size)
+    {
+        array[i] = peek(*stack_a);
+        ra(stack_a);
+        i++;
+    }
+    sort_array(array, size);
+    median = array[size / 2];
+    free(array);
+    return (median);
+
+ 
+}
+
+
 int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot)
 {
     int size;
@@ -41,7 +70,7 @@ void quicksort_stack(t_stack **stack_a, t_stack **stack_b, int size)
         return;
     }
 
-    pivot = find_median_of_three(stack_a);
+    pivot = find_optimized_median(stack_a);
     printf("pivot: %d\n", pivot);
     partition_size = partition_around_pivot(stack_a, stack_b, pivot);
 
@@ -59,8 +88,9 @@ void sort_small(t_stack **stack_a, t_stack **stack_b)
     int size;
 
     size = stack_size(*stack_a);
-
-    if (size <= 2)
+    if (size == 1)
+        return ;
+    else if (size == 2)
         sort_two(stack_a);
     else if (size == 3)
         sort_tree(stack_a);
@@ -68,11 +98,6 @@ void sort_small(t_stack **stack_a, t_stack **stack_b)
         sort_four(stack_a, stack_b);
     else if (size == 5)
         sort_five(stack_a, stack_b);
-    else
-    {
+    else if (size > 5)
         quicksort_stack(stack_a, stack_b, size);
-    }
 }
-
-
-
