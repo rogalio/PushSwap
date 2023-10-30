@@ -17,13 +17,15 @@ int main(int ac, char **av)
     //partition_around_pivot(&stack_a, &stack_b, find_median_of_three(&stack_a));
     
     //sort_small(&stack_a, &stack_b);
-    partition_sort(&stack_a, &stack_b);
+    //partition_sort(&stack_a, &stack_b);
     //merge_partitions(&stack_a, &stack_b);
     /*
         printf("\n");
     display_stack(stack_b);
     printf("\n");
     */
+   sort_small(&stack_a, &stack_b);
+   
    display_stack(stack_a);
    printf("\n");
    display_stack(stack_b);

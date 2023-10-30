@@ -51,5 +51,4 @@ void move_median_to_top(t_stack **stack_a);
 void sort_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
 int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
 bool is_sorted(t_stack *stack);
-void partition_sort(t_stack **stack_a, t_stack **stack_b);
 void merge_partitions(t_stack **stack_a, t_stack **stack_b);

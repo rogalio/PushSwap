@@ -149,22 +149,24 @@ int get_element_at(t_stack *stack, int index)
     return (stack->value);
 }
 
-int position_of(int value, t_stack **stack_a)
+int position_of(int value, t_stack *stack_a)
 {
     int i;
-    int size;
 
     i = 0;
-    size = stack_size(*stack_a);
-    while (i < size)
+    while (stack_a)
     {
-        if (peek(*stack_a) == value)
+        if (stack_a->value == value)
             return (i);
-        ra(stack_a);
+        stack_a = stack_a->next;
         i++;
     }
-    return (0);
+    return (-1);
 }
+
+
+
+
 
 int   find_median_of_three(t_stack **stack_a)
 {
@@ -225,29 +227,30 @@ void sort_pivot(t_stack **stack_a, t_stack **stack_b, int pivot)
     }
 }
 
+// cherche le median avec find_average et le place en haut de la pile
 void move_median_to_top(t_stack **stack_a) 
 {
-    int median = find_median_of_three(stack_a);
-    printf("median = %d\n", median);
-    int position = position_of(median, stack_a);
-    int size = stack_size(*stack_a);
-    int i = 0;
+    int median;
+    int position;
+    int size;
 
-    while (i < size)
+    median = find_median_of_three(stack_a);
+    printf("median = %d\n", median);
+    position = position_of(median, *stack_a);
+    size = stack_size(*stack_a);
+
+    while (peek(*stack_a) != median)
     {
-        if (peek(*stack_a) == median)
-            break;
-        else if (position < size / 2)
+        if (position <= size / 2)
             ra(stack_a);
         else
             rra(stack_a);
-        i++;
     }
 }
 
 
 
-
+// envoie tout ce qui est en dessous du pivot dans la pile b
 int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot)
 {
     int size;
@@ -275,36 +278,24 @@ void merge_partitions(t_stack **stack_a, t_stack **stack_b)
     }
 }
 
-    
-
-void partition_sort(t_stack **stack_a, t_stack **stack_b)
+void quicksort_stack(t_stack **stack_a, t_stack **stack_b, int size)
 {
+    int pivot;
+    int partition_size;
 
-    int size = stack_size(*stack_a);
-    int median = find_median_of_three(stack_a);
-
-    //(void)stack_b;
     if (size <= 5)
     {
         sort_small(stack_a, stack_b);
         return ;
     }
-  
-    // Choisir un pivot et le placer en haut de la pile B
-    move_median_to_top(stack_a);
-    partition_around_pivot(stack_a, stack_b, median);
+    pivot = find_median_of_three(stack_a);
+    partition_size = partition_around_pivot(stack_a, stack_b, pivot);
+    quicksort_stack(stack_a, stack_b, partition_size);
+    quicksort_stack(stack_a, stack_b, size - partition_size);
 
-    // Trier les éléments plus petits et plus grands que le pivot de fqcon iterative
-    int newSize = stack_size(*stack_a);
-    if (newSize < size)
-    {
-        partition_sort(stack_a, stack_b);
-        partition_sort(stack_b, stack_a);
-    }
-    // Fusionner les partitions triées
-   // merge_partitions(stack_a, stack_b);
-    
 }
+
+
 
 
 void sort_small(t_stack **stack_a, t_stack **stack_b)
@@ -324,9 +315,8 @@ void sort_small(t_stack **stack_a, t_stack **stack_b)
         sort_five(stack_a, stack_b);
     else if (size >= 6)
     {
-        partition_sort(stack_a, stack_b);
+        move_median_to_top(stack_a);
+        quicksort_stack(stack_a, stack_b, size);
         merge_partitions(stack_a, stack_b);
-    }
-
-        
+    }   
 }
