@@ -42,10 +42,14 @@ void quicksort_stack(t_stack **stack_a, t_stack **stack_b, int size)
     }
 
     pivot = find_median_of_three(stack_a);
+    printf("pivot: %d\n", pivot);
     partition_size = partition_around_pivot(stack_a, stack_b, pivot);
 
-    quicksort_stack(stack_b, stack_a, partition_size); // Notez que nous échangeons ici stack_a et stack_b
+    
+    
+    quicksort_stack(stack_b, stack_a, partition_size);
     quicksort_stack(stack_a, stack_b, size - partition_size);
+    
 
     merge_partitions(stack_a, stack_b);
 }
@@ -65,7 +69,9 @@ void sort_small(t_stack **stack_a, t_stack **stack_b)
     else if (size == 5)
         sort_five(stack_a, stack_b);
     else
+    {
         quicksort_stack(stack_a, stack_b, size);
+    }
 }
 
 
