@@ -44,11 +44,20 @@ void rr(t_stack **stack_a, t_stack **stack_b);
 void rra(t_stack **stack_a);
 void rrb(t_stack **stack_b);
 void rrr(t_stack **stack_a, t_stack **stack_b);
-void sort_small(t_stack **stack_a, t_stack **stack_b);
-
+void sort_two(t_stack **stack_a);
+void sort_tree(t_stack **stack_a);
+void sort_four(t_stack **stack_a, t_stack **stack_b);
+void sort_five(t_stack **stack_a, t_stack **stack_b);
+int stack_size(t_stack *stack);
+int find_min(t_stack *stack);
+int get_element_at(t_stack *stack, int index);
+int position_of(int value, t_stack *stack);
 int find_median_of_three(t_stack **stack_a);
 void move_median_to_top(t_stack **stack_a);
-void sort_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
-int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
 bool is_sorted(t_stack *stack);
+
+//push_swap.c
 void merge_partitions(t_stack **stack_a, t_stack **stack_b);
+int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
+void quicksort_stack(t_stack **stack_a, t_stack **stack_b, int size);
+void sort_small(t_stack **stack_a, t_stack **stack_b);
