@@ -160,6 +160,20 @@ int find_min(t_stack *stack)
     return (min);
 }
 
+int find_max(t_stack *stack)
+{
+    int max;
+
+    max = stack->value;
+    while (stack)
+    {
+        if (stack->value > max)
+            max = stack->value;
+        stack = stack->next;
+    }
+    return (max);
+}
+
 int get_element_at(t_stack *stack, int index)
 {
     int i;

@@ -1,7 +1,4 @@
-
 #include "../include/push_swap.h"
-
-
 
 int find_optimized_median(t_stack **stack_a) 
 {
@@ -29,7 +26,6 @@ int find_optimized_median(t_stack **stack_a)
  
 }
 
-
 int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot)
 {
     int size;
@@ -49,59 +45,45 @@ int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot)
     return (size - stack_size(*stack_a));
 }
 
-void merge_partitions(t_stack **stack_a, t_stack **stack_b)
+int sort_b_and_push_to_a(t_stack **stack_a, t_stack **stack_b)
 {
-    while (*stack_b)
+    int max;
+    int size; 
+    int i; 
+
+    size = stack_size(*stack_b);
+    i = 0;
+
+    // Iterate for each element in stack_b
+    while (i < size)
     {
-        rrb(stack_b);
+        // Find the maximum value in stack_b
+        max = find_max(*stack_b);
+        // Rotate stack_b until the maximum value is on top
+        while (peek(*stack_b) != max)
+            rb(stack_b);
+        // Push the maximum value from stack_b to stack_a
         pa(stack_a, stack_b);
+        i++;
     }
+    return (size);
 }
 
-void quicksort_stack(t_stack **stack_a, t_stack **stack_b, int size)
+void quicksort_stack(t_stack **stack_a, t_stack **stack_b)
 {
     int pivot;
-    int partition_size;
-
-    if (size <= 1 || is_sorted(*stack_a))
-        return;
-
-    if (size <= 5)
-    {
-        sort_small(stack_a, stack_b);
-        return;
+    // Continue until stack_a is empty
+    while (stack_size(*stack_a) > 0) 
+    {   
+        // Determine an optimized pivot from stack_a
+        // moving elements less than the pivot to stack_b
+        pivot = find_optimized_median(stack_a);
+        partition_around_pivot(stack_a, stack_b, pivot);
     }
-
-    pivot = find_optimized_median(stack_a);
-    partition_size = partition_around_pivot(stack_a, stack_b, pivot);
-
-    
-    
-    quicksort_stack(stack_b, stack_a, partition_size);
-    quicksort_stack(stack_a, stack_b, size - partition_size);
-    
-
-    merge_partitions(stack_a, stack_b);
+    // Sort elements in stack_b and push them back to stack_a in correct order
+    sort_b_and_push_to_a(stack_a, stack_b);
 }
 
-        int merge_b_to_a_with_sort(t_stack **stack_a, t_stack **stack_b)
-        {
-            int size;
-            int i;
-            int min;
-
-            size = stack_size(*stack_b);
-            i = 0;
-            while (i < size)
-            {
-                min = find_min(*stack_b);
-                while (peek(*stack_b) != min)
-                    rb(stack_b);
-                pa(stack_a, stack_b);
-                i++;
-            }
-            return (size);
-        }
 
 void sort_small(t_stack **stack_a, t_stack **stack_b)
 {
@@ -119,66 +101,5 @@ void sort_small(t_stack **stack_a, t_stack **stack_b)
     else if (size == 5)
         sort_five(stack_a, stack_b);
     else if (size > 5)
-    {
-        int pivot;
-        int partition_size;
-
-        printf("part 1 - start --------\n");
-        pivot = find_optimized_median(stack_a);
-        printf("pivot: %d\n", pivot);
-        partition_size = partition_around_pivot(stack_a, stack_b, pivot);
-        printf("partition_size: %d\n", partition_size);
-        printf("stack_a: \n");
-        display_stack(*stack_a);
-        printf("stack_b: \n");
-        display_stack(*stack_b);
-        printf("part 1 - end --------\n");
-
-        printf("part 2 - start --------\n");
-        pivot = find_optimized_median(stack_a);
-        printf("pivot: %d\n", pivot);
-        partition_size = partition_around_pivot(stack_a, stack_b, pivot);
-        printf("partition_size: %d\n", partition_size);
-        printf("stack_a: \n");
-        display_stack(*stack_a);
-        printf("stack_b: \n");
-        display_stack(*stack_b);
-        printf("part 2 - end --------\n");
-
-        printf("part 3 - start --------\n");
-        pivot = find_optimized_median(stack_a);
-        printf("pivot: %d\n", pivot);
-        partition_size = partition_around_pivot(stack_a, stack_b, pivot);
-        printf("partition_size: %d\n", partition_size);
-        printf("stack_a: \n");
-        display_stack(*stack_a);
-        printf("stack_b: \n");
-        display_stack(*stack_b);
-        printf("part 3 - end --------\n");
-
-        printf("part 4 - start --------\n");
-        pivot = find_optimized_median(stack_a);
-        printf("pivot: %d\n", pivot);
-        partition_size = partition_around_pivot(stack_a, stack_b, pivot);
-        printf("partition_size: %d\n", partition_size);
-        printf("stack_a: \n");
-        display_stack(*stack_a);
-        printf("stack_b: \n");
-        display_stack(*stack_b);
-        printf("part 4 - end --------\n");
-
-        merge_b_to_a_with_sort(stack_a, stack_b);
-
-
-
-
-        //merge_partitions(stack_a, stack_b);
-        (void)partition_size;
-
-        display_stack(*stack_a);
-        printf("\n");
-       display_stack(*stack_b);
-
-    }
-       // quicksort_stack(stack_a, stack_b, size);
+        quicksort_stack(stack_a, stack_b);
 }

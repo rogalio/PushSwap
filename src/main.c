@@ -11,10 +11,11 @@ int main(int ac, char **av)
     parse_input_arguments(ac, av, &stack_a);
 
    sort_small(&stack_a, &stack_b);
-   
-   //display_stack(stack_a);
-   //printf("\n");
-   //display_stack(stack_b);
+   printf("stack_a\n");
+   display_stack(stack_a);
+   printf("\n");
+    printf("stack_b\n");
+   display_stack(stack_b);
 
    
     return 0;

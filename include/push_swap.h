@@ -52,6 +52,7 @@ void sort_four(t_stack **stack_a, t_stack **stack_b);
 void sort_five(t_stack **stack_a, t_stack **stack_b);
 int stack_size(t_stack *stack);
 int find_min(t_stack *stack);
+int find_max(t_stack *stack);
 int get_element_at(t_stack *stack, int index);
 int position_of(int value, t_stack *stack);
 int find_median_of_three(t_stack **stack_a);
@@ -61,6 +62,6 @@ bool is_sorted(t_stack *stack);
 //push_swap.c
 void merge_partitions(t_stack **stack_a, t_stack **stack_b);
 int partition_around_pivot(t_stack **stack_a, t_stack **stack_b, int pivot);
-void quicksort_stack(t_stack **stack_a, t_stack **stack_b, int size);
+void quicksort_stack(t_stack **stack_a, t_stack **stack_b);
 void sort_small(t_stack **stack_a, t_stack **stack_b);
 void sort_big(t_stack **stack_a, t_stack **stack_b);
