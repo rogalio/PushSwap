@@ -12,9 +12,9 @@ int main(int ac, char **av)
 
    sort_small(&stack_a, &stack_b);
    
-   display_stack(stack_a);
-   printf("\n");
-   display_stack(stack_b);
+   //display_stack(stack_a);
+   //printf("\n");
+   //display_stack(stack_b);
 
    
     return 0;

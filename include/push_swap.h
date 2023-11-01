@@ -19,6 +19,7 @@ void display_stack(t_stack *stack);
 bool rotate_up(t_stack **stack);
 bool rotate_down(t_stack **stack);
 bool is_sorted(t_stack *stack);
+bool is_empty(t_stack *stack);
 
 // utilities.c
 t_stack *init_stack();
