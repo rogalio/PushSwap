@@ -66,3 +66,18 @@ void handle_error(char **tab, const char *message)
     printf("%s\n", message);
     exit(1);
 }
+
+int free_stack(t_stack **stack)
+{
+    t_stack *temp;
+
+    if (!stack)
+        return (0);
+    while (*stack)
+    {
+        temp = *stack;
+        *stack = (*stack)->next;
+        free(temp);
+    }
+    return (1);
+}

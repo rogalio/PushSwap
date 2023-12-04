@@ -27,6 +27,7 @@ void free_split(char **tab);
 void handle_error(char **tab, const char *message);
 bool is_valid_number(char *str);
 int sort_array(int *array, int size);
+int free_stack(t_stack **stack);
 
 // parse.c
 void parse_input_arguments(int ac, char **av, t_stack **stack_a);
