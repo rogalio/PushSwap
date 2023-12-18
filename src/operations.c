@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:20:42 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/14 17:36:58 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/18 17:26:41 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,15 +125,4 @@ bool	rotate_down(t_stack **stack)
 bool	is_empty(t_stack *stack)
 {
 	return (!stack);
-}
-
-bool	is_sorted(t_stack *stack)
-{
-	while (stack && stack->next)
-	{
-		if (stack->value > stack->next->value)
-			return (false);
-		stack = stack->next;
-	}
-	return (true);
 }

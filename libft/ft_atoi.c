@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rmouchel <rmouchel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:14:30 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/05/09 18:58:19 by rmouchel         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:17:58 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdio.h>
 
-int	ft_atoi(const char *str)
+long int	ft_atoi(const char *str)
 {
 	int		sign;
 	long	nbr;
@@ -33,6 +33,8 @@ int	ft_atoi(const char *str)
 		nbr = nbr * 10 + (str[i] - '0');
 		i++;
 	}
+	if (nbr > 2147483648)
+		return (-1);
 	return (nbr * sign);
 }
 

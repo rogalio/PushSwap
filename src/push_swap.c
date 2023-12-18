@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:44:08 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/14 17:57:05 by rmouchel         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:26:29 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,47 @@ void	quicksort_stack(t_stack **stack_a, t_stack **stack_b)
 	sort_b_and_push_to_a(stack_a, stack_b);
 }
 
+int	check_duplicates(t_stack *stack_a)
+{
+	t_stack	*tmp;
+	t_stack	*tmp2;
+
+	tmp = stack_a;
+	while (tmp)
+	{
+		tmp2 = tmp->next;
+		while (tmp2)
+		{
+			if (tmp->value == tmp2->value)
+				handle_error(0, "Error - Duplicates");
+			tmp2 = tmp2->next;
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
+void	is_sorted(t_stack *stack_a)
+{
+	t_stack	*tmp;
+
+	tmp = stack_a;
+	while (tmp->next)
+	{
+		if (tmp->value > tmp->next->value)
+			return ;
+		tmp = tmp->next;
+	}
+	exit(0);
+}
+
 void	sort_small(t_stack **stack_a, t_stack **stack_b)
 {
 	int	size;
 
 	size = stack_size(*stack_a);
+	check_duplicates(*stack_a);
+	is_sorted(*stack_a);
 	if (size == 1)
 		return ;
 	else if (size == 2)

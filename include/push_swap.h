@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:47:22 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/14 18:56:13 by rmouchel         ###   ########.fr       */
+/*   Updated: 2023/12/18 17:27:59 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int		peek(t_stack *stack);
 void	display_stack(t_stack *stack);
 bool	rotate_up(t_stack **stack);
 bool	rotate_down(t_stack **stack);
-bool	is_sorted(t_stack *stack);
+void	is_sorted(t_stack *stack);
 bool	is_empty(t_stack *stack);
 
 // utilities.c
@@ -73,7 +73,7 @@ int		get_element_at(t_stack *stack, int index);
 int		position_of(int value, t_stack *stack);
 int		find_median_of_three(t_stack **stack_a);
 void	move_median_to_top(t_stack **stack_a);
-bool	is_sorted(t_stack *stack);
+void	is_sorted(t_stack *stack);
 
 //push_swap.c
 void	merge_partitions(t_stack **stack_a, t_stack **stack_b);

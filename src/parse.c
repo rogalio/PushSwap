@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:37:27 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/14 17:43:43 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/18 17:43:47 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	parse_input_arguments(int ac, char **av, t_stack **stack_a)
 {
 	if (ac < 2)
-		handle_error(0, "not enough arguments");
+		exit(1);
 	if (ac == 2)
 		parse_one_arg(av[1], stack_a);
 	else
@@ -35,8 +35,10 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 	while (lst_of_ints[i])
 	{
 		if (!is_valid_number(lst_of_ints[i]))
-			handle_error(lst_of_ints, "invalid number");
+			handle_error(lst_of_ints, "Error - invalid number");
 		value = ft_atoi(lst_of_ints[i]);
+		if (value == -1)
+			handle_error(lst_of_ints, "Error - Max int overflow");
 		if (!add_value_to_stack(stack_a, value))
 			handle_error(lst_of_ints, "push failed");
 		i++;
@@ -53,8 +55,10 @@ int	parse_args(int ac, char **av, t_stack **stack_a)
 	while (i < ac)
 	{
 		if (!is_valid_number(av[i]))
-			handle_error(0, "invalid number");
+			handle_error(0, "Error -invalid number");
 		value = ft_atoi(av[i]);
+		if (value == -1)
+			handle_error(0, "Error - Max int overflow");
 		if (!add_value_to_stack(stack_a, value))
 			handle_error(0, "push failed");
 		i++;
