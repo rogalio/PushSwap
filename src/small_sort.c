@@ -6,95 +6,11 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:23:42 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/14 18:42:51 by rmouchel         ###   ########.fr       */
+/*   Updated: 2023/12/18 18:12:49 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-void	sa(t_stack **stack_a)
-{
-	swap(stack_a);
-	printf("sa\n");
-}
-
-void	sb(t_stack **stack_b)
-{
-	swap(stack_b);
-	printf("sb\n");
-}
-
-void	ss(t_stack **stack_a, t_stack **stack_b)
-{
-	swap(stack_a);
-	swap(stack_b);
-	printf("ss\n");
-}
-
-void	pa(t_stack **stack_a, t_stack **stack_b)
-{
-	push(stack_a, peek((*stack_b)));
-	pop(stack_b);
-	printf("pa\n");
-}
-
-void	pb(t_stack **stack_a, t_stack **stack_b)
-{
-	push(stack_b, peek((*stack_a)));
-	pop(stack_a);
-	printf("pb\n");
-}
-
-void	ra(t_stack **stack_a)
-{
-	rotate_up(stack_a);
-	printf("ra\n");
-}
-
-void	rb(t_stack **stack_b)
-{
-	rotate_up(stack_b);
-	printf("rb\n");
-}
-
-void	rr(t_stack **stack_a, t_stack **stack_b)
-{
-	rotate_up(stack_a);
-	rotate_up(stack_b);
-	printf("rr\n");
-}
-
-void	rra(t_stack **stack_a)
-{
-	rotate_down(stack_a);
-	printf("rra\n");
-}
-
-void	rrb(t_stack **stack_b)
-{
-	rotate_down(stack_b);
-	printf("rrb\n");
-}
-
-void	rrr(t_stack **stack_a, t_stack **stack_b)
-{
-	rotate_down(stack_a);
-	rotate_down(stack_b);
-	printf("rrr\n");
-}
-
-int	stack_size(t_stack *stack)
-{
-	int	size;
-
-	size = 0;
-	while (stack)
-	{
-		size++;
-		stack = stack->next;
-	}
-	return (size);
-}
 
 void	sort_two(t_stack **stack_a)
 {
@@ -158,47 +74,6 @@ void	sort_five(t_stack **stack_a, t_stack **stack_b)
 	pa(stack_a, stack_b);
 }
 
-int	find_min(t_stack *stack)
-{
-	int	min;
-
-	min = stack->value;
-	while (stack)
-	{
-		if (stack->value < min)
-			min = stack->value;
-		stack = stack->next;
-	}
-	return (min);
-}
-
-int	find_max(t_stack *stack)
-{
-	int	max;
-
-	max = stack->value;
-	while (stack)
-	{
-		if (stack->value > max)
-			max = stack->value;
-		stack = stack->next;
-	}
-	return (max);
-}
-
-int	get_element_at(t_stack *stack, int index)
-{
-	int	i;
-
-	i = 0;
-	while (i < index)
-	{
-		stack = stack->next;
-		i++;
-	}
-	return (stack->value);
-}
-
 int	position_of(int value, t_stack *stack_a)
 {
 	int	i;
@@ -212,41 +87,4 @@ int	position_of(int value, t_stack *stack_a)
 		i++;
 	}
 	return (-1);
-}
-
-int	find_median_of_three(t_stack **stack_a)
-{
-	int	first;
-	int	middle;
-	int	last;
-
-	first = peek(*stack_a);
-	middle = get_element_at(*stack_a, stack_size(*stack_a) / 2);
-	last = get_element_at(*stack_a, stack_size(*stack_a) - 1);
-	if ((first > middle && first < last) || (first < middle && first > last))
-		return (first);
-	else if ((middle > first && middle < last)
-		|| (middle < first && middle > last))
-		return (middle);
-	else if ((last > first && last < middle) || (last < first && last > middle))
-		return (last);
-	return (0);
-}
-
-void	move_median_to_top(t_stack **stack_a)
-{
-	int	median;
-	int	position;
-	int	size;
-
-	median = find_median_of_three(stack_a);
-	position = position_of(median, *stack_a);
-	size = stack_size(*stack_a);
-	while (peek(*stack_a) != median)
-	{
-		if (position <= size / 2)
-			ra(stack_a);
-		else
-			rra(stack_a);
-	}
 }

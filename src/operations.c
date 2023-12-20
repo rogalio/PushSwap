@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:20:42 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/18 17:26:41 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/18 18:03:10 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,52 +77,4 @@ int	peek(t_stack *stack)
 	if (!stack)
 		return (0);
 	return (stack->value);
-}
-
-void	display_stack(t_stack *stack)
-{
-	while (stack)
-	{
-		printf("%d\n", stack->value);
-		stack = stack->next;
-	}
-}
-
-bool	rotate_up(t_stack **stack)
-{
-	t_stack	*tmp;
-	t_stack	*last;
-
-	if (!*stack || !(*stack)->next)
-		return (false);
-	tmp = *stack;
-	last = *stack;
-	while (last->next)
-		last = last->next;
-	*stack = tmp->next;
-	tmp->next = NULL;
-	last->next = tmp;
-	return (true);
-}
-
-bool	rotate_down(t_stack **stack)
-{
-	t_stack	*tmp;
-	t_stack	*last;
-
-	if (!*stack || !(*stack)->next)
-		return (false);
-	tmp = *stack;
-	while (tmp->next->next)
-		tmp = tmp->next;
-	last = tmp->next;
-	tmp->next = NULL;
-	last->next = *stack;
-	*stack = last;
-	return (true);
-}
-
-bool	is_empty(t_stack *stack)
-{
-	return (!stack);
 }

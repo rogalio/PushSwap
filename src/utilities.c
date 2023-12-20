@@ -6,16 +6,11 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:58:45 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/14 18:21:16 by rmouchel         ###   ########.fr       */
+/*   Updated: 2023/12/20 17:42:13 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-t_stack	*init_stack(void)
-{
-	return (NULL);
-}
 
 bool	is_valid_number(char *str)
 {
@@ -73,10 +68,10 @@ int	sort_array(int *array, int size)
 	return (1);
 }
 
-void	handle_error(char **tab, const char *message)
+void	handle_error(char **tab)
 {
 	free_split(tab);
-	printf("%s\n", message);
+	write(2, "Error\n", 6);
 	exit(1);
 }
 
