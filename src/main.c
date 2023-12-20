@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:00:41 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/12/20 18:31:32 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/20 18:50:14 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	sort_small(t_stack **stack_a, t_stack **stack_b)
 	int	size;
 
 	size = stack_size(*stack_a);
-	check_duplicates(*stack_a);
-	is_sorted(*stack_a);
 	if (size == 1)
 		return ;
 	else if (size == 2)

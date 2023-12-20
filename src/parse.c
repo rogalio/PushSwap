@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:37:27 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/20 17:44:35 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/20 18:50:06 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 		i++;
 	}
 	free_split(lst_of_ints);
+	check_duplicates(*stack_a);
+	is_sorted(*stack_a);
 }
 
 int	parse_args(int ac, char **av, t_stack **stack_a)
@@ -63,7 +65,7 @@ int	parse_args(int ac, char **av, t_stack **stack_a)
 			handle_error(0);
 		i++;
 	}
-	if (check_duplicates(*stack_a))
-		free_stack(stack_a);
+	check_duplicates(*stack_a);
+	is_sorted(*stack_a);
 	return (1);
 }
