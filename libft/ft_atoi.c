@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:14:30 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/12/18 17:17:58 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/21 20:14:18 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,20 +37,3 @@ long int	ft_atoi(const char *str)
 		return (-1);
 	return (nbr * sign);
 }
-
-/**
- * @file
- * @brief      Convertit une chaîne de caractères en entier (int) en respectant le signe (+ ou -).
- *
- * @param[in]  str   Chaîne de caractères constante (const char *) à convertir en entier.
- *
- * @return     Entier (int) résultant de la conversion de la chaîne de caractères en entrée.
- *
- * @details    La fonction ft_atoi fonctionne de la manière suivante :
- *             1. Initialisation des variables locales `sign` et `nbr` à 1 et 0 respectivement.
- *             2. Passage des éventuels espaces blancs en début de chaîne avec la fonction `ft_isspace`.
- *             3. Vérification de la présence d'un signe négatif en début de chaîne. Si présent, mise à jour de `sign`.
- *             4. Passage du signe si présent (+ ou -).
- *             5. Parcours de la chaîne et conversion des caractères numériques en entier.
- *             6. Retour de la valeur convertie, en tenant compte du signe.
- */
