@@ -6,14 +6,12 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 18:12:10 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/20 18:25:29 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/20 18:59:11 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-// create a fonction to check is list is sorted, if yess free stack_a
-// and return true, else return false
 void	is_sorted(t_stack *stack_a)
 {
 	t_stack	*current;
