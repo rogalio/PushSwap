@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 18:06:18 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/20 15:01:47 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/27 16:22:29 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,28 @@ void	ss(t_stack **stack_a, t_stack **stack_b)
 
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	push(stack_a, peek((*stack_b)));
-	pop(stack_b);
+	if (stack_b == NULL || *stack_b == NULL) {
+		return; // Vérifiez si la pile B est vide
+	}
+
+	t_stack *temp = *stack_b; // Sauvegardez le nœud en haut de la pile B
+	*stack_b = (*stack_b)->next; // Retirez le nœud du sommet de la pile B
+
+	temp->next = *stack_a; // Placez le nœud au sommet de la pile A
+	*stack_a = temp; // Mettez à jour le sommet de la pile A
 	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	push(stack_b, peek((*stack_a)));
-	pop(stack_a);
+	if (stack_a == NULL || *stack_a == NULL) {
+        return; // Vérifiez si la pile A est vide
+    }
+
+    t_stack *temp = *stack_a; // Sauvegardez le nœud en haut de la pile A
+    *stack_a = (*stack_a)->next; // Retirez le nœud du sommet de la pile A
+
+    temp->next = *stack_b; // Placez le nœud au sommet de la pile B
+    *stack_b = temp; // Mettez à jour le sommet de la pile B
 	write(1, "pb\n", 3);
 }

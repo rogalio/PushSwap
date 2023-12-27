@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:37:27 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/20 18:50:06 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/27 12:03:17 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 {
 	char	**lst_of_ints;
 	int		i;
-	int		value;
+	long int		value;
 
 	lst_of_ints = ft_split(str, ' ');
 	if (!lst_of_ints)
@@ -37,7 +37,7 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 		if (!is_valid_number(lst_of_ints[i]))
 			handle_error(lst_of_ints);
 		value = ft_atoi(lst_of_ints[i]);
-		if (value == -1)
+		if (value > INT_MAX || value < INT_MIN)
 			handle_error(lst_of_ints);
 		if (!add_value_to_stack(stack_a, value))
 			handle_error(lst_of_ints);
@@ -51,7 +51,7 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 int	parse_args(int ac, char **av, t_stack **stack_a)
 {
 	int	i;
-	int	value;
+	long int	value;
 
 	i = 1;
 	while (i < ac)
@@ -59,7 +59,7 @@ int	parse_args(int ac, char **av, t_stack **stack_a)
 		if (!is_valid_number(av[i]))
 			handle_error(0);
 		value = ft_atoi(av[i]);
-		if (value == -1)
+		if (value > INT_MAX || value < INT_MIN)
 			handle_error(0);
 		if (!add_value_to_stack(stack_a, value))
 			handle_error(0);

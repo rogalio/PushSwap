@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:14:30 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/12/21 20:14:18 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/27 12:03:01 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 long int	ft_atoi(const char *str)
 {
-	int		sign;
-	long	nbr;
+	int			sign;
+	long int	nbr;
 	size_t	i;
 
 	i = 0;
@@ -33,7 +33,5 @@ long int	ft_atoi(const char *str)
 		nbr = nbr * 10 + (str[i] - '0');
 		i++;
 	}
-	if (nbr > 2147483648)
-		return (-1);
 	return (nbr * sign);
 }

@@ -2,7 +2,7 @@
 
 NAME = push_swap
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 SRC_DIR = src/
 OBJ_DIR = obj/
 LIB_DIR = libft/
