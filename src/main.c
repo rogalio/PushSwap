@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:00:41 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/12/27 18:01:33 by rogalio          ###   ########.fr       */
+/*   Updated: 2023/12/28 15:30:35 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,6 @@
 t_stack	*init_stack(void)
 {
 	return (NULL);
-}
-
-void	sort_small(t_stack **stack_a, t_stack **stack_b)
-{
-	int	size;
-
-	size = stack_size(*stack_a);
-	if (size == 1)
-		return ;
-	else if (size == 2)
-		sort_two(stack_a);
-	else if (size == 3)
-		sort_tree(stack_a);
-	else if (size == 4)
-		sort_four(stack_a, stack_b);
-	else if (size == 5)
-		sort_five(stack_a, stack_b);
-	else if (size > 5)
-		quicksort_stack(stack_a, stack_b);
 }
 
 int get_index(int *array, int size, int value)
@@ -133,8 +114,6 @@ void merge_stacks(t_stack **stack_a, t_stack **stack_b) {
 
 
 
-
-
 void display_stack(t_stack *stack)
 {
 	while (stack)
@@ -200,9 +179,6 @@ void insert_sort_stack_b(t_stack **stack_b) {
     *stack_b = sorted;
 }
 
-
-
-
 void sort_stack(t_stack **stack_a, t_stack **stack_b) {
     index_stack(stack_a); // Indexez d'abord les éléments de la pile A
     int size = stack_size(*stack_a);
@@ -223,20 +199,11 @@ void sort_stack(t_stack **stack_a, t_stack **stack_b) {
 	insert_sort_stack_a(stack_a);
 
     // Triez la pile B en utilisant le tri par insertion
-  	insert_sort_stack_b(stack_b);
-
-	
-
+	insert_sort_stack_b(stack_b);
 
     // Fusion des piles A et B
     merge_stacks(stack_a, stack_b);
-
-	
-	
 }
-
-
-
 
 
 int	main(int ac, char **av)
@@ -248,13 +215,9 @@ int	main(int ac, char **av)
 	stack_a = init_stack();
 	stack_b = init_stack();
 	parse_input_arguments(ac, av, &stack_a);
-
-
-
 	 
 	sort_stack(&stack_a, &stack_b);
-	
-	/*
+
 	display_stack(stack_a);
 	printf("\n");
 	display_stack(stack_b);
@@ -263,7 +226,6 @@ int	main(int ac, char **av)
 		printf("OK\n");
 	else
 		printf("KO\n");
-	*/
 	
 	
 	free_stack(&stack_a);
