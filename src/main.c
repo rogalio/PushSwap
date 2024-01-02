@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:00:41 by rmouchel          #+#    #+#             */
-/*   Updated: 2024/01/02 17:44:45 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/02 19:24:49 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -498,20 +498,110 @@ void sort_five_elements(t_stack **stack_a, t_stack **stack_b) {
     insert_in_order(stack_a, stack_b); // Insérer le premier min
 }
 
-void sort_small_stack(t_stack **stack_a, t_stack **stack_b) {
-	int size = stack_size(*stack_a);
-
-	if (size == 2) {
-		sort_two_elements(stack_a);
-	} else if (size == 3) {
-		sort_three_elements(stack_a);
-	} else if (size == 4) {
-		sort_four_elements(stack_a, stack_b);
-	} else if (size == 5) {
-		sort_five_elements(stack_a, stack_b);
-	}
+int determine_chunk_size(int size)
+{
+	if (size <= 50)
+		return (size / 2);
+	else if (size <= 100)
+		return (size / 6);
+	else
+		return (size / 16);
 }
 
+typedef struct s_process_chunk {
+    t_chunk *chunks;
+    int current_pair;
+    int total_chunks;
+} s_process_chunk;
+
+void process_chunk_pair(t_stack **stack_a, t_stack **stack_b, s_process_chunk *process_chunk, int *size)
+{
+    int end_of_pair;
+
+    if (process_chunk->current_pair + 1 < process_chunk->total_chunks)
+        end_of_pair = process_chunk->chunks[process_chunk->current_pair + 1].end;
+    else
+        end_of_pair = *size;
+
+    int i = 0;
+    while (i < *size)
+    {
+        if ((*stack_a)->index >= process_chunk->chunks[process_chunk->current_pair].start && (*stack_a)->index <= end_of_pair)
+        {
+            pb(stack_a, stack_b);
+            if (process_chunk->current_pair + 1 < process_chunk->total_chunks && (*stack_b)->index > process_chunk->chunks[process_chunk->current_pair].end)
+                rb(stack_b);
+        }
+        else
+            ra(stack_a);
+        i++;
+    }
+    *size -= end_of_pair - process_chunk->chunks[process_chunk->current_pair].start + 1;
+}
+
+
+void distribute_elements_to_chunks(t_stack **stack_a, t_stack **stack_b, t_chunk *chunks, int total_chunks)
+{
+    int size;
+    int pairs_to_process;
+    int current_pair;
+	s_process_chunk process_chunk;
+
+	size = stack_size(*stack_a);
+	current_pair = 0;
+    if (total_chunks % 2 == 0)
+        pairs_to_process = total_chunks;
+    else
+        pairs_to_process = total_chunks - 1;
+
+    process_chunk.chunks = chunks;
+    process_chunk.total_chunks = total_chunks;
+
+    while (current_pair < pairs_to_process)
+    {
+        process_chunk.current_pair = current_pair;
+        process_chunk_pair(stack_a, stack_b, &process_chunk, &size);
+        current_pair += 2;
+    }
+
+    while (stack_size(*stack_a) > 0)
+        pb(stack_a, stack_b);
+}
+
+
+int sort_large_elements(t_stack **stack_a, t_stack **stack_b) {
+	int size;
+	int chunk_size;
+	t_chunk *chunks;
+
+	size = stack_size(*stack_a);
+	chunk_size = determine_chunk_size(size);
+	chunks = calculate_ranges_of_chunks(size, chunk_size);
+	distribute_elements_to_chunks(stack_a, stack_b, chunks, size / chunk_size);
+	sort_chunk_in_a(stack_a);
+	move_chunks_to_a(stack_a, stack_b);
+	finalize_stack_a(stack_a);
+	free(chunks);
+
+	return (0);
+}
+
+void sort_stack(t_stack **stack_a, t_stack **stack_b)
+{
+	int size;
+
+	size = stack_size(*stack_a);
+	if (size == 2)
+		sort_two_elements(stack_a);
+	else if (size == 3)
+		sort_three_elements(stack_a);
+	else if (size == 4)
+		sort_four_elements(stack_a, stack_b);
+	else if (size == 5)
+		sort_five_elements(stack_a, stack_b);
+	else
+		sort_large_elements(stack_a, stack_b);
+}
 
 int	main(int ac, char **av)
 {
@@ -522,25 +612,7 @@ int	main(int ac, char **av)
 	stack_b = init_stack();
 	parse_input_arguments(ac, av, &stack_a);
 	index_stack(stack_a);
-	chunk_stack(&stack_a, &stack_b);
-	//sort_small_stack(&stack_a, &stack_b);
-	//sort_stack(&stack_a, &stack_b);
-	/*
-	
-display_stack(stack_a);
-	printf("\n");
-	display_stack(stack_b);
-	*/
-	
-	
-	//check = is_sorted2(stack_a);
-	//if (check == 1)
-	//	printf("OK\n");
-	//else
-	//	printf("KO\n");
-	
- 
-	
+	sort_stack(&stack_a, &stack_b);
 	free_stack(&stack_a);
 	free_stack(&stack_b);
 	return (0);
