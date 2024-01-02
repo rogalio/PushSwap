@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:00:41 by rmouchel          #+#    #+#             */
-/*   Updated: 2024/01/02 14:34:08 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/02 15:20:17 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -378,9 +378,9 @@ void chunk_stack(t_stack **stack_a, t_stack **stack_b) {
     if (size <= 50)
         chunk_size = size / 2; // Deux chunks pour les petites piles.
     else if (size <= 100)
-        chunk_size = size / 3; // Trois chunks pour les piles de taille moyenne.
+        chunk_size = size / 6; // Trois chunks pour les piles de taille moyenne.
     else
-        chunk_size = size / 5; // Cinq chunks pour les grandes piles.
+        chunk_size = size / 16; // Cinq chunks pour les grandes piles.
 		
 	t_chunk *chunks = calculate_ranges_of_chunks(size, chunk_size);
 	move_elements_to_b(stack_a, stack_b, chunks, size / chunk_size);
