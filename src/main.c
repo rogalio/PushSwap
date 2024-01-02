@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 17:00:41 by rmouchel          #+#    #+#             */
-/*   Updated: 2024/01/02 15:20:17 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/02 15:57:42 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,28 +176,27 @@ t_chunk *calculate_ranges_of_chunks(int size, int chunk_size) {
 
 void move_elements_to_b(t_stack **stack_a, t_stack **stack_b, t_chunk *chunks, int total_chunks) {
     int size = stack_size(*stack_a);
-
-    // Traiter les chunks deux par deux, sauf le dernier si total_chunks est impair.
     int pairs_to_process = (total_chunks % 2 == 0) ? total_chunks : total_chunks - 1;
 
     for (int current_pair = 0; current_pair < pairs_to_process; current_pair += 2) {
-        int end_of_pair = chunks[current_pair + 1].end;
+        int end_of_pair = (current_pair + 1 < total_chunks) ? chunks[current_pair + 1].end : size;
 
         for (int i = 0; i < size; i++) {
             if ((*stack_a)->index >= chunks[current_pair].start && (*stack_a)->index <= end_of_pair) {
-                pb(stack_a, stack_b); // Push l'élément de A à B.
-
-                // Si l'élément appartient au deuxième chunk de la paire, faire un 'rb'.
-                if ((*stack_b)->index > chunks[current_pair].end) {
+                pb(stack_a, stack_b);
+                if (current_pair + 1 < total_chunks && (*stack_b)->index > chunks[current_pair].end) {
                     rb(stack_b);
                 }
             } else {
-                ra(stack_a); // Rotate A si l'élément n'appartient pas aux chunks de la paire actuelle.
+                ra(stack_a);
             }
         }
-
-        // Réduire la taille de la pile A après chaque paire de chunks traitée.
         size -= end_of_pair - chunks[current_pair].start + 1;
+    }
+
+    // Gérer les éléments restants dans stack_a
+    while (stack_size(*stack_a) > 0) {
+        pb(stack_a, stack_b);
     }
 }
 
