@@ -6,11 +6,23 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:16:37 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 13:17:46 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 18:26:56 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
+
+void	rra(t_stack **stack_a)
+{
+	rotate_down(stack_a);
+	write(1, "rra\n", 4);
+}
+
+void	rrb(t_stack **stack_b)
+{
+	rotate_down(stack_b);
+	write(1, "rrb\n", 4);
+}
 
 void	rrr(t_stack **stack_a, t_stack **stack_b)
 {
@@ -19,45 +31,48 @@ void	rrr(t_stack **stack_a, t_stack **stack_b)
 	write(1, "rrr\n", 4);
 }
 
-int	stack_size(t_stack *stack)
-{
-	int	size;
 
-	size = 0;
+void rotate_to_top(t_stack **stack, int target_index, char stack_name)
+{
+    int size;
+    int index_position;
+
+    size = stack_size(*stack);
+    index_position = get_index_in_stack(*stack, target_index);
+    if (index_position == -1)
+        return ;
+    while ((*stack)->index != target_index)
+    {
+        if (index_position < size / 2)
+        {
+            if (stack_name == 'a')
+                ra(stack);
+            else
+                rb(stack);
+        } else
+        {
+            if (stack_name == 'a')
+                rra(stack);
+            else
+                rrb(stack);
+        }
+        index_position = get_index_in_stack(*stack, target_index);
+    }
+}
+
+int get_position_in_sorted_stack(t_stack *stack, int target_index)
+{
+	int position;
+
+    position = 0;
 	while (stack)
-	{
-		size++;
+    {
+		if (stack->index < target_index)
+			position++;
 		stack = stack->next;
 	}
-	return (size);
+	return position;
 }
 
-void	is_sorted(t_stack *stack_a)
-{
-	t_stack	*current;
 
-	current = stack_a;
-	while (current->next)
-	{
-		if (current->value > current->next->value)
-			return ;
-		current = current->next;
-	}
-	free_stack(&stack_a);
-	exit(EXIT_SUCCESS);
-}
-int find_min(t_stack *stack)
-{
-	int min;
-	t_stack *tmp;
 
-	tmp = stack;
-	min = tmp->value;
-	while (tmp)
-	{
-		if (tmp->value < min)
-			min = tmp->value;
-		tmp = tmp->next;
-	}
-	return (min);
-}

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   small_sort.c                                       :+:      :+:    :+:   */
+/*   sort_small.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:23:42 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 13:26:06 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 17:35:37 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@ void sort_two_elements(t_stack **stack_a)
 		sa(stack_a);
 }
 
-void sort_three_elements(t_stack **stack_a) {
+void sort_three_elements(t_stack **stack_a)
+{
     int first;
     int second;
     int third;
@@ -43,45 +44,46 @@ void sort_three_elements(t_stack **stack_a) {
 		rra(stack_a);
 }
 
-int remove_min(t_stack **stack_a, t_stack **stack_b) {
-	int min = find_min(*stack_a);
-	int min_pos = position_of(min, *stack_a);
-	int size = stack_size(*stack_a);
-
-	while (min_pos--) {
-		ra(stack_a); // Rotation jusqu'à ce que le minimum soit en haut
-	}
-	pb(stack_a, stack_b); // Pousser le minimum dans stack_b
-
-	return size - 1; // Retourne la nouvelle taille de stack_a
-}
-
-int find_next_min(t_stack *stack, int min) {
-	int next_min = INT_MAX;
-
-	while (stack) {
-		if (stack->value < next_min && stack->value > min) {
-			next_min = stack->value;
-		}
-		stack = stack->next;
-	}
-
-	return next_min;
-}
-
 void sort_four_elements(t_stack **stack_a, t_stack **stack_b) {
-    // Trouvez les deux éléments les plus petits
-
-    remove_min(stack_a, stack_b); // Poussez le premier min dans stack_b
-	remove_min(stack_a, stack_b); // Poussez le second min dans stack_b
-    
-    // Triez les deux éléments restants dans stack_a
+    remove_min(stack_a, stack_b);
+	remove_min(stack_a, stack_b);
     sort_two_elements(stack_a);
-
-    // Ramenez les éléments de stack_b
-    pa(stack_a, stack_b); // Ramenez le second min
-    pa(stack_a, stack_b); // Ramenez le premier min
+    pa(stack_a, stack_b);
+    pa(stack_a, stack_b);
 }
+
+void sort_five_elements(t_stack **stack_a, t_stack **stack_b) {
+    int first_min;
+	int second_min;
+
+    first_min = find_min(*stack_a);
+    remove_specific(stack_a, stack_b, first_min); 
+    second_min = find_next_min(*stack_a, first_min);
+    remove_specific(stack_a, stack_b, second_min); 
+    sort_three_elements(stack_a);
+    insert_in_order(stack_a, stack_b);
+    insert_in_order(stack_a, stack_b);
+}
+
+int	position_of(int value, t_stack *stack_a)
+{
+	int	i;
+
+	i = 0;
+	while (stack_a)
+	{
+		if (stack_a->value == value)
+			return (i);
+		stack_a = stack_a->next;
+		i++;
+	}
+	return (-1);
+}
+
+
+
+
+
 
 
 

@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:58:45 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 13:21:43 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 18:57:04 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,6 @@ int	sort_array(int *array, int size)
 	return (1);
 }
 
-void	handle_error(char **tab)
-{
-	free_split(tab);
-	write(2, "Error\n", 6);
-	exit(1);
-}
 
 int	free_stack(t_stack **stack)
 {
@@ -98,3 +92,17 @@ int	check_duplicates(t_stack *stack_a)
 	}
 	return (0);
 }
+
+int determine_chunk_size(int size)
+{
+	if (size <= 50)
+		return (size / 2);
+	else if (size <= 100)
+		return (size / 6);
+	else
+		return (size / 14);
+}
+
+
+
+

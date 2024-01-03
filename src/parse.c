@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:37:27 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 13:20:08 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 17:42:39 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,6 @@ int	parse_args(int ac, char **av, t_stack **stack_a)
 	return (1);
 }
 
-t_stack	*init_stack(void)
-{
-	return (NULL);
-}
 bool	is_valid_number(char *str)
 {
 	int	i;
@@ -88,4 +84,11 @@ bool	is_valid_number(char *str)
 		i++;
 	}
 	return (true);
+}
+
+void	handle_error(char **tab)
+{
+	free_split(tab);
+	write(2, "Error\n", 6);
+	exit(1);
 }

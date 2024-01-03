@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:11:04 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 13:13:57 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 17:26:59 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,14 @@ bool	swap(t_stack **stack)
 	return (true);
 }
 
-int	peek(t_stack *stack)
+void	sa(t_stack **stack_a)
 {
-	if (!stack)
-		return (0);
-	return (stack->value);
+	swap(stack_a);
+	write(1, "sa\n", 3);
 }
-bool	is_empty(t_stack *stack)
+
+void	sb(t_stack **stack_b)
 {
-	return (!stack);
+	swap(stack_b);
+	write(1, "sb\n", 3);
 }
