@@ -6,27 +6,13 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:58:45 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/20 17:42:13 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 13:21:43 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-bool	is_valid_number(char *str)
-{
-	int	i;
 
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (false);
-		i++;
-	}
-	return (true);
-}
 
 void	free_split(char **tab)
 {
@@ -88,4 +74,27 @@ int	free_stack(t_stack **stack)
 		free(temp);
 	}
 	return (1);
+}
+
+int	check_duplicates(t_stack *stack_a)
+{
+	t_stack	*tmp;
+	t_stack	*tmp2;
+
+	tmp = stack_a;
+	while (tmp)
+	{
+		tmp2 = tmp->next;
+		while (tmp2)
+		{
+			if (tmp->value == tmp2->value)
+			{
+				free_stack(&stack_a);
+				handle_error(0);
+			}
+			tmp2 = tmp2->next;
+		}
+		tmp = tmp->next;
+	}
+	return (0);
 }

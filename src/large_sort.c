@@ -6,78 +6,13 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 12:01:59 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 12:50:46 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 13:30:45 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
 
-int get_position_in_sorted_stack(t_stack *stack, int target_index) {
-	int position = 0;
-
-	while (stack) {
-		if (stack->index < target_index) {
-			position++;
-		}
-		stack = stack->next;
-	}
-
-	return position;
-}
-
-
-void insert_in_place(t_stack **stack_a, int inserted_index) {
-    int size = stack_size(*stack_a);
-    int position_to_insert = get_position_in_sorted_stack(*stack_a, inserted_index);
-    
-    while ((*stack_a)->index != inserted_index) {
-        if (position_to_insert < size / 2) {
-            ra(stack_a); // Tourne vers le haut
-        } else {
-            rra(stack_a); // Tourne vers le bas
-        }
-    }
-}
-
-
-
-
-
-void rotate_to_top(t_stack **stack, int target_index, char stack_name) {
-    // Vérifier que target_index existe dans la pile
-    if (get_index_in_stack(*stack, target_index) == -1) return;
-
-    int size = stack_size(*stack);
-    int index_position = get_index_in_stack(*stack, target_index);
-
-    while ((*stack)->index != target_index) {
-        if (index_position < size / 2) {
-            (stack_name == 'a') ? ra(stack) : rb(stack);
-        } else {
-            (stack_name == 'a') ? rra(stack) : rrb(stack);
-        }
-        index_position = get_index_in_stack(*stack, target_index);
-    }
-}
-
-void finalize_stack_a(t_stack **stack_a) {
-    int min_index = find_min_index(*stack_a);
-    rotate_to_top(stack_a, min_index, 'a');
-}
-
-
-
-void move_chunks_to_a(t_stack **stack_a, t_stack **stack_b) {
-    while (*stack_b) {
-        int target_index = find_highest_index(*stack_b);
-        if (target_index == -1) break;
-
-        rotate_to_top(stack_b, target_index, 'b');
-        pa(stack_a, stack_b);
-        insert_in_place(stack_a, target_index);
-    }
-}
 
 
 int determine_chunk_size(int size)

@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:44:08 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 12:28:04 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 13:32:18 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,17 @@ void sort_stack(t_stack **stack_a, t_stack **stack_b)
 		sort_large_elements(stack_a, stack_b);
 }
 
-int	check_duplicates(t_stack *stack_a)
+int	main(int ac, char **av)
 {
-	t_stack	*tmp;
-	t_stack	*tmp2;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 
-	tmp = stack_a;
-	while (tmp)
-	{
-		tmp2 = tmp->next;
-		while (tmp2)
-		{
-			if (tmp->value == tmp2->value)
-			{
-				free_stack(&stack_a);
-				handle_error(0);
-			}
-			tmp2 = tmp2->next;
-		}
-		tmp = tmp->next;
-	}
+	stack_a = init_stack();
+	stack_b = init_stack();
+	parse_input_arguments(ac, av, &stack_a);
+	index_stack(stack_a);
+	sort_stack(&stack_a, &stack_b);
+	free_stack(&stack_a);
+	free_stack(&stack_b);
 	return (0);
 }

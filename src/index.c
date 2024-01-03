@@ -6,27 +6,28 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 12:12:45 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 12:50:30 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 13:23:31 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-int find_max_index(t_stack *stack) {
-	int max_index = 0;
-	int max_value = INT_MIN;
-	int index = 0;
+void index_stack(t_stack *stack)
+{
+	int size;
+	int *array;
+	t_stack *temp;
 
-	while (stack != NULL) {
-		if (stack->index > max_value) {
-			max_value = stack->index;
-			max_index = index;
-		}
-		index++;
-		stack = stack->next;
-	}
-
-	return (max_index);
+	temp = stack;
+	size = stack_size(stack);
+	array = stack_to_array(stack, size);
+	sort_array(array, size);
+	while (temp)
+	{
+        temp->index = get_position(array, size, temp->value);
+        temp = temp->next;
+    }
+	free(array);
 }
 
 int find_min_index(t_stack *stack) {
@@ -89,20 +90,3 @@ int find_highest_index(t_stack *stack) {
 	return highest_index;
 }
 
-void index_stack(t_stack *stack)
-{
-	int size;
-	int *array;
-	t_stack *temp;
-
-	temp = stack;
-	size = stack_size(stack);
-	array = stack_to_array(stack, size);
-	sort_array(array, size);
-	while (temp)
-	{
-        temp->index = get_position(array, size, temp->value);
-        temp = temp->next;
-    }
-	free(array);
-}

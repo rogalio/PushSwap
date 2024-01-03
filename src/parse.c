@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:37:27 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/27 12:03:17 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 13:20:08 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,24 @@ int	parse_args(int ac, char **av, t_stack **stack_a)
 	check_duplicates(*stack_a);
 	is_sorted(*stack_a);
 	return (1);
+}
+
+t_stack	*init_stack(void)
+{
+	return (NULL);
+}
+bool	is_valid_number(char *str)
+{
+	int	i;
+
+	i = 0;
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (str[i])
+	{
+		if (!ft_isdigit(str[i]))
+			return (false);
+		i++;
+	}
+	return (true);
 }

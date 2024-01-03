@@ -1,38 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   operations.c                                       :+:      :+:    :+:   */
+/*   stack_operations.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/14 17:20:42 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/27 16:08:15 by rogalio          ###   ########.fr       */
+/*   Created: 2024/01/03 13:11:04 by rogalio           #+#    #+#             */
+/*   Updated: 2024/01/03 13:13:57 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-bool	add_value_to_stack(t_stack **stack, int value)
-{
-	t_stack	*new;
-	t_stack	*current;
-
-	new = malloc(sizeof(t_stack));
-	if (!new)
-		return (false);
-	new->value = value;
-	new->next = NULL;
-	if (!*stack)
-		*stack = new;
-	else
-	{
-		current = *stack;
-		while (current->next)
-			current = current->next;
-		current->next = new;
-	}
-	return (true);
-}
 
 bool	push(t_stack **stack, int value)
 {
@@ -77,4 +55,8 @@ int	peek(t_stack *stack)
 	if (!stack)
 		return (0);
 	return (stack->value);
+}
+bool	is_empty(t_stack *stack)
+{
+	return (!stack);
 }
