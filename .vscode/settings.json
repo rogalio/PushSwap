@@ -3,6 +3,7 @@
     "__bit_reference": "c",
     "algorithm": "c",
     "bit": "c",
-    "vector": "c"
+    "vector": "c",
+    "push_swap.h": "c"
   }
 }

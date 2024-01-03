@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/18 18:12:10 by rogalio           #+#    #+#             */
-/*   Updated: 2023/12/20 18:59:11 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/03 12:45:08 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,40 +26,19 @@ void	is_sorted(t_stack *stack_a)
 	free_stack(&stack_a);
 	exit(EXIT_SUCCESS);
 }
-
-int	find_median_of_three(t_stack **stack_a)
+int find_min(t_stack *stack)
 {
-	int	first;
-	int	middle;
-	int	last;
+	int min;
+	t_stack *tmp;
 
-	first = peek(*stack_a);
-	middle = get_element_at(*stack_a, stack_size(*stack_a) / 2);
-	last = get_element_at(*stack_a, stack_size(*stack_a) - 1);
-	if ((first > middle && first < last) || (first < middle && first > last))
-		return (first);
-	else if ((middle > first && middle < last)
-		|| (middle < first && middle > last))
-		return (middle);
-	else if ((last > first && last < middle) || (last < first && last > middle))
-		return (last);
-	return (0);
-}
-
-void	move_median_to_top(t_stack **stack_a)
-{
-	int	median;
-	int	position;
-	int	size;
-
-	median = find_median_of_three(stack_a);
-	position = position_of(median, *stack_a);
-	size = stack_size(*stack_a);
-	while (peek(*stack_a) != median)
+	tmp = stack;
+	min = tmp->value;
+	while (tmp)
 	{
-		if (position <= size / 2)
-			ra(stack_a);
-		else
-			rra(stack_a);
+		if (tmp->value < min)
+			min = tmp->value;
+		tmp = tmp->next;
 	}
+	return (min);
 }
+
