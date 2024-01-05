@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 12:01:59 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 18:32:56 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:17:09 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void distribute_elements_to_chunks(t_stack **stack_a, t_stack **stack_b, t_chunk
     int size;
     int pairs_to_process;
     int current_pair;
-	s_process_chunk process_chunk;
+	t_process_chunk process_chunk;
 
 	size = stack_size(*stack_a);
 	current_pair = 0;
@@ -38,7 +38,7 @@ void distribute_elements_to_chunks(t_stack **stack_a, t_stack **stack_b, t_chunk
 }
 
 
-void process_chunk_pair(t_stack **stack_a, t_stack **stack_b, s_process_chunk *process_chunk, int *size)
+void process_chunk_pair(t_stack **stack_a, t_stack **stack_b, t_process_chunk *process_chunk, int *size)
 {
     int end_of_pair;
 

@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:37:27 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 17:42:39 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/05 17:42:39 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,16 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 	while (lst_of_ints[i])
 	{
 		if (!is_valid_number(lst_of_ints[i]))
+		{
+			free_stack(stack_a);
 			handle_error(lst_of_ints);
+		}
 		value = ft_atoi(lst_of_ints[i]);
 		if (value > INT_MAX || value < INT_MIN)
+		{
+			free_stack(stack_a);
 			handle_error(lst_of_ints);
+		}
 		if (!add_value_to_stack(stack_a, value))
 			handle_error(lst_of_ints);
 		i++;
@@ -46,6 +52,16 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 	free_split(lst_of_ints);
 	check_duplicates(*stack_a);
 	is_sorted(*stack_a);
+}
+
+void handle_error2(char **tab,t_stack **stack)
+{
+	(void)tab;
+	if (stack && *stack)
+		free_stack(stack);
+	free_stack(stack);
+	write(2, "Error\n", 6);
+	exit(1);
 }
 
 int	parse_args(int ac, char **av, t_stack **stack_a)
@@ -57,10 +73,14 @@ int	parse_args(int ac, char **av, t_stack **stack_a)
 	while (i < ac)
 	{
 		if (!is_valid_number(av[i]))
-			handle_error(0);
+		{
+			handle_error2(av,stack_a);
+		}
 		value = ft_atoi(av[i]);
 		if (value > INT_MAX || value < INT_MIN)
-			handle_error(0);
+		{
+			handle_error2(av,stack_a);
+		}
 		if (!add_value_to_stack(stack_a, value))
 			handle_error(0);
 		i++;
@@ -92,3 +112,4 @@ void	handle_error(char **tab)
 	write(2, "Error\n", 6);
 	exit(1);
 }
+
