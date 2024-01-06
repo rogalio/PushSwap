@@ -12,7 +12,7 @@ INCLUDES = -I include/ -I $(LIB_DIR)
 # Source and Object files
 
 PUSH_SWAP_SRC = indexing.c parse.c push_swap.c sort_large.c sort_small.c sort_utils.c stack_operations.c stack_operations2.c stack_rotations.c stack_rotations2.c stack_utils.c stack.c utilities.c
-CHECKER_SRC = checker.c $(filter-out push_swap.c, $(PUSH_SWAP_SRC))
+CHECKER_SRC = checker.c parse_bonus.c stack_operations_bonus.c $(filter-out push_swap.c, $(PUSH_SWAP_SRC))
 
 PUSH_SWAP_OBJ = $(PUSH_SWAP_SRC:.c=.o)
 CHECKER_OBJ = $(CHECKER_SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:37:27 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/05 17:42:39 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/06 10:38:00 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 	char	**lst_of_ints;
 	int		i;
 	long int		value;
+
 
 	lst_of_ints = ft_split(str, ' ');
 	if (!lst_of_ints)
@@ -49,6 +50,7 @@ void	parse_one_arg(char *str, t_stack **stack_a)
 			handle_error(lst_of_ints);
 		i++;
 	}
+	
 	free_split(lst_of_ints);
 	check_duplicates(*stack_a);
 	is_sorted(*stack_a);

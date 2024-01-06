@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:47:22 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/05 18:34:10 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/06 11:48:31 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,20 @@ int		main(int ac, char **av);
 
 // stack.c
 int		get_position(int *array, int size, int value);
+int     get_next_line(int fd, char **line);
+int     ft_strcmp(char *s1,char *s2);
+
+// parse_bonus.c
+int handle_error_bonus(char **tab,t_stack **stack_a);
+void parse_one_arg2(char *str, t_stack **stack_a);
+void parse_input_arguments2(int ac, char **av, t_stack **stack_a);
+int     check_duplicates2(t_stack *stack_a);
+
+// stack_operations_bonus.c
+void pb1(t_stack **stack_a, t_stack **stack_b);
+void pa1(t_stack **stack_a, t_stack **stack_b);
+void ss1(t_stack **stack_a, t_stack **stack_b);
+void rr1(t_stack **stack_a, t_stack **stack_b);
+void rrr1(t_stack **stack_a, t_stack **stack_b);
 
 #endif
