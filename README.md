@@ -1,3 +1,5 @@
+![Push Swap Image](https://ibb.co/DQ1WHmf)
+
 # Push Swap Project :twisted_rightwards_arrows: :computer:
 
 ## About the Project :page_facing_up:
@@ -13,6 +15,24 @@ Push Swap is an intriguing journey into the realm of sorting algorithms and stac
 ## How it Works :gear:
 
 Push Swap sorts integers on a stack with a limited set of instructions, using the least possible moves. It comprises two stacks named `a` and `b`. Initially, `a` contains a random number of positive or negative integers without duplicates, and `b` is empty. The goal is to sort the numbers in `a` using a limited set of instructions.
+
+## Instruction Set
+
+For the following instructions, if the instruction is not possible, the part of it that can't be executed won't be executed.
+
+| Code | Instruction                         | Action                                             |
+| ---- | ----------------------------------- | -------------------------------------------------- |
+| sa   | swap a                              | swaps the 2 top elements of stack a                |
+| sb   | swap b                              | swaps the 2 top elements of stack b                |
+| ss   | swap a + swap b                     | both sa and sb                                     |
+| pa   | push a                              | moves the top element of stack b to top of stack a |
+| pb   | push b                              | moves the top element of stack a to top of stack b |
+| ra   | rotate a                            | shifts all elements of stack a from bottom to top  |
+| rb   | rotate b                            | shifts all elements of stack b from bottom to top  |
+| rr   | rotate a + rotate b                 | both ra and rb                                     |
+| rra  | reverse rotate a                    | shifts all elements of stack a from top to bottom  |
+| rrb  | reverse rotate b                    | shifts all elements of stack b from top to bottom  |
+| rrr  | reverse rotate a + reverse rotate b | both rra and rrb                                   |
 
 ## Sorting Algorithm Explained :mag:
 
@@ -38,7 +58,7 @@ The bonus part includes a `checker` program that takes integer arguments and a s
 
 1. **Clone the Repository**:
    ```bash
-   git clone [Your Repository URL]
+   git clone https://github.com/rogalio/PushSwap
    ```
 2. **Compile the Project**:
    This will compile the `push_swap` and optionally the `checker` programs.
@@ -47,10 +67,12 @@ The bonus part includes a `checker` program that takes integer arguments and a s
 
 - **Push Swap**:
   ```bash
-  ./push_swap [list of numbers]
+  ./push_swap 3 2 1 7 6
   ```
 - **Checker (Bonus)**:
-  ARGS ="[list of numbers]"; ./push_swap $ARGS | ./checker $ARGS
+  ```bash
+  ARGS ="3 2 1 7 6"; ./push_swap $ARGS | ./checker $ARGS
+  ```
 
 ## How the Algorithm Works :bulb:
 
