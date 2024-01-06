@@ -1,4 +1,4 @@
-![Push Swap Image](https://ibb.co/DQ1WHmf)
+![Push Swap](https://imgur.com/FnPH2OT)
 
 # Push Swap Project :twisted_rightwards_arrows: :computer:
 
