@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:15:37 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 18:25:09 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/07 16:16:57 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	rr(t_stack **stack_a, t_stack **stack_b)
 	rotate_up(stack_b);
 	write(1, "rr\n", 3);
 }
+
 bool	rotate_up(t_stack **stack)
 {
 	t_stack	*tmp;

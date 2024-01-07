@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:47:22 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/07 14:16:09 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/07 17:03:59 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ typedef struct s_process_chunk
 void	parse_input_arguments(int ac, char **av, t_stack **stack_a);
 void	parse_one_arg(char *str, t_stack **stack_a);
 int		parse_args(int ac, char **av, t_stack **stack_a);
-bool	is_valid_number(char *str);
 void	handle_error(char **tab);
 
 // stack_operations.c
@@ -89,8 +88,10 @@ void	sort_five_elements(t_stack **stack_a, t_stack **stack_b);
 int		position_of(int value, t_stack *stack_a);
 
 // sort_large.c
-void	chunks_distribute(t_stack **stack_a, t_stack **stack_b, t_chunk *chunks, int total_chunks);
-void	process_chunk_pair(t_stack **stack_a, t_stack **stack_b, t_process_chunk *process_chunk, int *size);
+void	distribute_to_chunks(t_stack **stack_a, t_stack **stack_b,
+			t_chunk *chunks, int total_chunks);
+void	process_chunk_pair(t_stack **stack_a, t_stack **stack_b,
+			t_process_chunk *process_chunk, int *size);
 void	move_chunks_to_a(t_stack **stack_a, t_stack **stack_b);
 void	insert_in_place(t_stack **stack_a, int inserted_index);
 int		sort_large_elements(t_stack **stack_a, t_stack **stack_b);
@@ -122,20 +123,29 @@ int		main(int ac, char **av);
 
 // stack.c
 int		get_position(int *array, int size, int value);
-int     get_next_line(int fd, char **line);
-int     ft_strcmp(char *s1,char *s2);
+int		get_next_line(int fd, char **line);
+int		ft_strcmp(char *s1, char *s2);
+void	free_and_exit(t_stack **stack_a, char **tab);
+bool	is_valid_number(char *str);
 
 // parse_bonus.c
-int handle_error_bonus(char **tab,t_stack **stack_a);
-void parse_one_arg2(char *str, t_stack **stack_a);
-void parse_input_arguments2(int ac, char **av, t_stack **stack_a);
-int     check_duplicates2(t_stack *stack_a);
+int		handle_error_bonus(char **tab, t_stack **stack_a);
+void	parse_one_arg2(char *str, t_stack **stack_a);
+void	parse_input_arguments2(int ac, char **av, t_stack **stack_a);
+int		check_duplicates2(t_stack *stack_a);
 
 // stack_operations_bonus.c
-void pb1(t_stack **stack_a, t_stack **stack_b);
-void pa1(t_stack **stack_a, t_stack **stack_b);
-void ss1(t_stack **stack_a, t_stack **stack_b);
-void rr1(t_stack **stack_a, t_stack **stack_b);
-void rrr1(t_stack **stack_a, t_stack **stack_b);
+void	pb1(t_stack **stack_a, t_stack **stack_b);
+void	pa1(t_stack **stack_a, t_stack **stack_b);
+void	ss1(t_stack **stack_a, t_stack **stack_b);
+void	rr1(t_stack **stack_a, t_stack **stack_b);
+void	rrr1(t_stack **stack_a, t_stack **stack_b);
+
+// stack_utils2.c
+int read_and_join(int fd, char **line);
+void handle_eof(char **line, int ret);
+void is_sorted2(t_stack *stack_a);
+void    handle_error_bonus2(char **tab, t_stack **stack);
+
 
 #endif

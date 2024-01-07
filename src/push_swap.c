@@ -6,16 +6,15 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:44:08 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/05 18:34:24 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/07 15:51:32 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-
-void sort_stack(t_stack **stack_a, t_stack **stack_b)
+void	sort_stack(t_stack **stack_a, t_stack **stack_b)
 {
-	int size;
+	int	size;
 
 	size = stack_size(*stack_a);
 	if (size == 2)

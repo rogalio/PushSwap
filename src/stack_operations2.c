@@ -6,13 +6,11 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 13:14:21 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/03 18:23:31 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/07 16:16:29 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-
 
 void	ss(t_stack **stack_a, t_stack **stack_b)
 {
@@ -23,36 +21,34 @@ void	ss(t_stack **stack_a, t_stack **stack_b)
 
 void	pa(t_stack **stack_a, t_stack **stack_b)
 {
-	if (stack_b == NULL || *stack_b == NULL) {
-		return; // Vérifiez si la pile B est vide
-	}
+	t_stack	*temp;
 
-	t_stack *temp = *stack_b; // Sauvegardez le nœud en haut de la pile B
-	*stack_b = (*stack_b)->next; // Retirez le nœud du sommet de la pile B
-
-	temp->next = *stack_a; // Placez le nœud au sommet de la pile A
-	*stack_a = temp; // Mettez à jour le sommet de la pile A
+	temp = *stack_b;
+	if (stack_b == NULL || *stack_b == NULL)
+		return ;
+	*stack_b = (*stack_b)->next;
+	temp->next = *stack_a;
+	*stack_a = temp;
 	write(1, "pa\n", 3);
 }
 
 void	pb(t_stack **stack_a, t_stack **stack_b)
 {
-	if (stack_a == NULL || *stack_a == NULL) {
-        return; // Vérifiez si la pile A est vide
-    }
+	t_stack	*temp;
 
-    t_stack *temp = *stack_a; // Sauvegardez le nœud en haut de la pile A
-    *stack_a = (*stack_a)->next; // Retirez le nœud du sommet de la pile A
-
-    temp->next = *stack_b; // Placez le nœud au sommet de la pile B
-    *stack_b = temp; // Mettez à jour le sommet de la pile B
+	temp = *stack_a;
+	if (stack_a == NULL || *stack_a == NULL)
+		return ;
+	*stack_a = (*stack_a)->next;
+	temp->next = *stack_b;
+	*stack_b = temp;
 	write(1, "pb\n", 3);
 }
 
-int find_min(t_stack *stack)
+int	find_min(t_stack *stack)
 {
-	int min;
-	t_stack *tmp;
+	int		min;
+	t_stack	*tmp;
 
 	tmp = stack;
 	min = tmp->value;
