@@ -6,13 +6,13 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/03 12:01:59 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/05 16:17:09 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/07 14:15:45 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
 
-void distribute_elements_to_chunks(t_stack **stack_a, t_stack **stack_b, t_chunk *chunks, int total_chunks)
+void chunks_distribute(t_stack **stack_a, t_stack **stack_b, t_chunk *chunks, int total_chunks)
 {
     int size;
     int pairs_to_process;

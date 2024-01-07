@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:47:22 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/06 11:48:31 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/07 14:16:09 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void	sort_five_elements(t_stack **stack_a, t_stack **stack_b);
 int		position_of(int value, t_stack *stack_a);
 
 // sort_large.c
-void	distribute_elements_to_chunks(t_stack **stack_a, t_stack **stack_b, t_chunk *chunks, int total_chunks);
+void	chunks_distribute(t_stack **stack_a, t_stack **stack_b, t_chunk *chunks, int total_chunks);
 void	process_chunk_pair(t_stack **stack_a, t_stack **stack_b, t_process_chunk *process_chunk, int *size);
 void	move_chunks_to_a(t_stack **stack_a, t_stack **stack_b);
 void	insert_in_place(t_stack **stack_a, int inserted_index);

@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 11:18:29 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/06 11:47:57 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/07 13:54:57 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	parse_one_arg2(char *str, t_stack **stack_a)
 	}
 	free_split(lst_of_ints);
     check_duplicates2(*stack_a);
+	// vois si je lisse ou pas ci dessous
+	is_sorted(*stack_a);
 }
 
 void	parse_input_arguments2(int ac, char **av, t_stack **stack_a)
