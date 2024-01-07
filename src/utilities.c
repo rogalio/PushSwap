@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:58:45 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/05 16:50:32 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/07 13:01:04 by rogalio          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int determine_chunk_size(int size)
 	if (size <= 50)
 		return (size / 2);
 	else if (size <= 100)
-		return (size / 6);
+		return (size / 8);
 	else
 		return (size / 14);
 }
