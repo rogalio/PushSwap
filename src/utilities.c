@@ -6,13 +6,11 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 17:58:45 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/07 13:01:04 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/08 18:27:48 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/push_swap.h"
-
-
 
 void	free_split(char **tab)
 {
@@ -54,7 +52,6 @@ int	sort_array(int *array, int size)
 	return (1);
 }
 
-
 int	free_stack(t_stack **stack)
 {
 	t_stack	*temp;
@@ -93,7 +90,7 @@ int	check_duplicates(t_stack *stack_a)
 	return (0);
 }
 
-int determine_chunk_size(int size)
+int	determine_chunk_size(int size)
 {
 	if (size <= 50)
 		return (size / 2);
@@ -102,7 +99,3 @@ int determine_chunk_size(int size)
 	else
 		return (size / 14);
 }
-
-
-
-

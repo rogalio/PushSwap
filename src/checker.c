@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/05 17:45:52 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/07 18:28:26 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/08 18:14:43 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,9 @@ int	process_input_commands(t_stack **stack_a, t_stack **stack_b)
 		if (!execute_operation(line, stack_a, stack_b))
 		{
 			free(line);
-            free_stack(stack_a);
-            write(2, "Error\n", 6);
-            exit(1);
+			free_stack(stack_a);
+			write(2, "Error\n", 6);
+			exit(1);
 		}
 		free(line);
 	}
@@ -83,7 +83,6 @@ void	check_sort_and_show_result(t_stack **stack_a, t_stack **stack_b)
 	else
 		write(1, "KO\n", 3);
 }
-
 
 int	main(int argc, char **argv)
 {

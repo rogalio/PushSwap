@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/14 18:47:22 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/07 17:03:59 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/08 18:12:59 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,10 +142,9 @@ void	rr1(t_stack **stack_a, t_stack **stack_b);
 void	rrr1(t_stack **stack_a, t_stack **stack_b);
 
 // stack_utils2.c
-int read_and_join(int fd, char **line);
-void handle_eof(char **line, int ret);
-void is_sorted2(t_stack *stack_a);
-void    handle_error_bonus2(char **tab, t_stack **stack);
-
+int		read_and_join(int fd, char **line);
+void	handle_eof(char **line, int ret);
+void	is_sorted2(t_stack *stack_a);
+void	handle_error_bonus2(char **tab, t_stack **stack);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/06 17:14:30 by rmouchel          #+#    #+#             */
-/*   Updated: 2023/12/27 12:03:01 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/08 18:29:49 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ long int	ft_atoi(const char *str)
 {
 	int			sign;
 	long int	nbr;
-	size_t	i;
+	size_t		i;
 
 	i = 0;
 	sign = 1;

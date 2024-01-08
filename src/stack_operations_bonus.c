@@ -6,7 +6,7 @@
 /*   By: rogalio <rmouchel@student.42.fr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/06 11:16:20 by rogalio           #+#    #+#             */
-/*   Updated: 2024/01/07 17:23:55 by rogalio          ###   ########.fr       */
+/*   Updated: 2024/01/08 18:17:18 by rmouchel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,44 +36,20 @@ void	pa1(t_stack **stack_a, t_stack **stack_b)
 	*stack_a = temp;
 }
 
-
-/*
-
 void	ss1(t_stack **stack_a, t_stack **stack_b)
 {
-	sa(stack_a);
-	sb(stack_b);
+	swap(stack_a);
+	swap(stack_b);
 }
 
 void	rr1(t_stack **stack_a, t_stack **stack_b)
 {
-	ra(stack_a);
-	rb(stack_b);
+	rotate_up(stack_a);
+	rotate_up(stack_b);
 }
 
 void	rrr1(t_stack **stack_a, t_stack **stack_b)
 {
-	rra(stack_a);
-	rrb(stack_b);
+	rotate_down(stack_a);
+	rotate_down(stack_b);
 }
-
-*/
-
-void ss1(t_stack **stack_a, t_stack **stack_b)
-{
-    swap(stack_a);
-    swap(stack_b);
-}
-
-void rr1(t_stack **stack_a, t_stack **stack_b)
-{
-    rotate_up(stack_a);
-    rotate_up(stack_b);
-}
-
-void rrr1(t_stack **stack_a, t_stack **stack_b)
-{
-    rotate_down(stack_a);
-    rotate_down(stack_b);
-}
-
